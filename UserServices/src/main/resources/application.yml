@@ -12,14 +12,24 @@ spring:
       ddl-auto : update
     show-sql : true
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    eureka-service-url-poll-interval-seconds:
-      defaultZone: http://localhost:8761/eureka
+
+  config:
+    import: configserver:http://localhost:8085
+
+#  profiles:
+#    active: prod -> this is used to activate profiles
+
+#    instead of below configuration we are getting configuration from config server above line
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    eureka-service-url-poll-interval-seconds:
+#      defaultZone: http://localhost:8761/eureka
+
 
 
 
