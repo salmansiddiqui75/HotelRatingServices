@@ -5,6 +5,7 @@ import com.rating.services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class RatingController
     private RatingService service;
 
     //create
+    @PreAuthorize("hasAuthority('Admin')")
 
     @PostMapping()
     public ResponseEntity<Rating> create(@RequestBody Rating rating)
@@ -25,6 +27,7 @@ public class RatingController
     }
 
     //Get All
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('SCOPE_internal')")
 
     @GetMapping
     public ResponseEntity<List<Rating>> getAll()
@@ -33,6 +36,7 @@ public class RatingController
     }
 
     //Get rating by UserId
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('SCOPE_internal')")
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Rating>> getByUserId(@PathVariable String userId)
     {
@@ -41,6 +45,7 @@ public class RatingController
 
     //Get rating by hotelId
 
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('SCOPE_internal')")
     @GetMapping("/hotel/{hotelId}")
     public ResponseEntity<List<Rating>> getByHotelId(@PathVariable String hotelId)
     {

@@ -7,6 +7,29 @@ spring:
     username : root
     driver-class-name : com.mysql.cj.jdbc.Driver
 
+#Spring security configration
+
+oauth2:
+  resourceserver:
+    jwt:
+      issuer-uri: https://dev-77405221.okta.com/oauth2/default
+
+#Client configuration
+  client:
+    registration:
+      my-internal-client:
+        provider: okta
+        authorization-grant-type: client-credential
+        scope: internal
+        client-id: 0oah13one27FS5Sk05d7
+        client-secret: vxc6oXzLSN5OBuYZ1Zk89eLGnc6Cay2rk_5MnZRg3c-pSiIbuT-v3e2JtMQfkUB0
+
+    provider:
+      okta:
+        issuer-uri: https://dev-77405221.okta.com/oauth2/default
+
+
+
   jpa:
     hibernate:
       ddl-auto : update
@@ -72,6 +95,14 @@ resilience4j:
         limit-refresh-period: 4s
         limit-for-period: 2
         timeout-duration: 2s
+
+#OKTA configuration
+
+okta:
+  oauth2:
+    issuer: dev-77405221.okta.com
+    audience: api://default
+
 
 
 
